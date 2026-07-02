@@ -6,8 +6,8 @@ library(ggrepel)
 library(stringr)
 
 # DESeq2 object ----
-# Use the "Converted counts" button in the Pre-Process tab of iDEP website
-# to download the low count filtered counts 
+# Use Supplemetary Data S3 file, which is count matrix after low count filtering
+# The low count matrix was obtained using the "Converted counts" button in the Pre-Process tab of iDEP website
 raw_counts <-  read.csv("data/bulk_RNA/03.Result_X204SC25084634-Z01-F003_Arabidopsis_thaliana/Result_X204SC25084634-Z01-F003_Arabidopsis_thaliana/3.Quant/1.Count/gene_count_TAIRs_for_pr_PCA_converted.csv")
 row.names(raw_counts) <- raw_counts$User_ID # asign TAIR ids to be rownames of the count matrix
 raw_counts <- raw_counts[, -(1:4)] # delete 4 columns of IDs
@@ -119,3 +119,4 @@ ggplot(plot_summary, aes(x = Gene_name, y = mean_expr, fill = Genotype)) +
     legend.position = "right") +
   scale_fill_brewer(palette = "Set1",
                     breaks = c("WT", "CYCP4;1oe", "CYCP4;2oe", "CYCP4;3oe"))
+
